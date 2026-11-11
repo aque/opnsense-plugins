@@ -166,36 +166,59 @@
         <id>general.extensive_helo_restrictions</id>
         <label>Advanced HELO Restrictions</label>
         <type>checkbox</type>
+        <help><![CDATA[
+            Adds the following checks at the HELO/EHLO stage. These checks are in addition to their matching individual options below. Disabling a matching option does not remove it from this list.
+            <ul>
+                <li>Permit clients in 'Trusted Networks'.</li>
+                <li>Permit SASL authenticated clients.</li>
+                <li>Reject a malformed HELO or EHLO hostname.</li>
+                <li>Reject a HELO or EHLO hostname that is not a fully qualified domain name or address literal, as required by RFC 5321.</li>
+                <li>Reject a HELO or EHLO hostname that has no DNS A or MX record.</li>
+            </ul> ]]></help>
     </field>
     <field>
         <id>general.extensive_sender_restrictions</id>
         <label>Advanced Sender Restrictions</label>
         <type>checkbox</type>
+        <help><![CDATA[
+            Adds the following checks at the MAIL FROM stage. These checks are in addition to their matching individual options below. Disabling a matching option does not remove it from this list.
+            <ul>
+                <li>Permit clients in 'Trusted Networks'.</li>
+                <li>Permit SASL authenticated clients.</li>
+                <li>Reject a client IP address that has no reverse DNS name.</li>
+                <li>Reject a sender domain that has no DNS MX or A record.</li>
+                <li>Reject a sender address that is not in fully qualified domain form.</li>
+            </ul> ]]></help>
     </field>
     <field>
         <id>general.reject_unknown_client_hostname</id>
         <label>Reject Unknown Client Hostname</label>
         <type>checkbox</type>
+        <help>Reject the request when the client IP address has no reverse DNS name, when that name does not resolve, or when it does not resolve back to the client IP address.</help>
     </field>
     <field>
         <id>general.reject_non_fqdn_helo_hostname</id>
         <label>Reject Non-FQDN HELO Hostname</label>
         <type>checkbox</type>
+        <help>Reject the request when the HELO or EHLO hostname is not a fully qualified domain name or address literal, as required by RFC 5321.</help>
     </field>
     <field>
         <id>general.reject_invalid_helo_hostname</id>
         <label>Reject Invalid HELO Hostname</label>
         <type>checkbox</type>
+        <help>Reject the request when the HELO or EHLO hostname is malformed.</help>
     </field>
      <field>
         <id>general.reject_unknown_helo_hostname</id>
         <label>Reject Unknown HELO Hostname</label>
         <type>checkbox</type>
+        <help>Reject the request when the HELO or EHLO hostname has no DNS A or MX record.</help>
     </field>
     <field>
         <id>general.reject_unauth_pipelining</id>
         <label>Reject Unauthenticated Pipelining</label>
         <type>checkbox</type>
+        <help>Reject the request when the client sends SMTP commands ahead of time without knowing that Postfix supports ESMTP pipelining. This stops bulk mail software that misuses pipelining to speed up delivery.</help>
     </field>
     <field>
         <id>general.reject_unknown_sender_domain</id>
@@ -207,6 +230,7 @@
         <id>general.reject_unknown_recipient_domain</id>
         <label>Reject Unknown Recipient Domain</label>
         <type>checkbox</type>
+        <help>Reject the request when Postfix is not the final destination for the recipient domain and that domain has no DNS MX or A record, or has a malformed MX record.</help>
     </field>
     <field>
         <id>general.reject_non_fqdn_sender</id>
@@ -230,16 +254,19 @@
         <id>general.permit_tls_clientcerts</id>
         <label>Permit TLS Client Certificate Authenticated Users</label>
         <type>checkbox</type>
+        <help>Permit the request when the fingerprint of the client's TLS certificate is listed in relay_clientcerts.</help>
     </field>
     <field>
         <id>general.permit_mynetworks</id>
         <label>Permit Trusted Networks</label>
         <type>checkbox</type>
+        <help>Permit the request when the client IP address is in 'Trusted Networks'.</help>
     </field>
     <field>
         <id>general.reject_unauth_destination</id>
         <label>Reject Unauthenticated Destination</label>
         <type>checkbox</type>
+        <help>Reject the request unless Postfix is a relay or the final destination for the recipient domain. This prevents the server from acting as an open relay.</help>
     </field>
     <field>
         <id>general.reject_unverified_recipient</id>
